@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>PHP: Releases</title>
+
+ <link rel="shortcut icon" href="http://php.net/favicon.ico">
+ <link rel="search" type="application/opensearchdescription+xml" href="http://php.net/phpnetimprovedsearch.src" title="Add PHP.net search">
+ <link rel="alternate" type="application/atom+xml" href="http://php.net/releases/feed.php" title="PHP Release feed">
+ <link rel="alternate" type="application/atom+xml" href="http://php.net/feed.atom" title="PHP: Hypertext Preprocessor">
+
+ <link rel="canonical" href="http://php.net/releases/index.php">
+ <link rel="shorturl" href="http://php.net/releases/index">
+ <link rel="alternate" href="http://php.net/releases/index" hreflang="x-default">
+
+
+
+<link rel="stylesheet" type="text/css" href="http://php.net/cached.php?t=1421837618&amp;f=/fonts/Fira/fira.css" media="screen">
+<link rel="stylesheet" type="text/css" href="http://php.net/cached.php?t=1421837618&amp;f=/fonts/Font-Awesome/css/fontello.css" media="screen">
+<link rel="stylesheet" type="text/css" href="http://php.net/cached.php?t=1478800802&amp;f=/styles/theme-base.css" media="screen">
+<link rel="stylesheet" type="text/css" href="http://php.net/cached.php?t=1449787206&amp;f=/styles/theme-medium.css" media="screen">
+<link rel="stylesheet" type="text/css" href="http://php.net/cached.php?t=1421837618&amp;f=/styles/releases.css" media="screen">
+
+ <!--[if lte IE 7]>
+ <link rel="stylesheet" type="text/css" href="http://php.net/styles/workarounds.ie7.css" media="screen">
+ <![endif]-->
+
+ <!--[if lte IE 8]>
+ <script type="text/javascript">
+  window.brokenIE = true;
+ </script>
+ <![endif]-->
+
+ <!--[if lte IE 9]>
+ <link rel="stylesheet" type="text/css" href="http://php.net/styles/workarounds.ie9.css" media="screen">
+ <![endif]-->
+
+ <!--[if IE]>
+ <script type="text/javascript" src="http://php.net/js/ext/html5.js"></script>
+ <![endif]-->
+
+ <base href="http://php.net/releases/index.php">
+
+</head>
+<body class="downloads ">
+
+<nav id="head-nav" class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <a href="/" class="brand"><img src="/images/logos/php-logo.svg" width="48" height="24" alt="php"></a>
+    <div id="mainmenu-toggle-overlay"></div>
+    <input type="checkbox" id="mainmenu-toggle">
+    <ul class="nav">
+      <li class="active"><a href="/downloads">Downloads</a></li>
+      <li class=""><a href="/docs.php">Documentation</a></li>
+      <li class=""><a href="/get-involved" >Get Involved</a></li>
+      <li class=""><a href="/support">Help</a></li>
+    </ul>
+    <form class="navbar-search" id="topsearch" action="/search.php">
+      <input type="hidden" name="show" value="quickref">
+      <input type="search" name="pattern" class="search-query" placeholder="Search" accesskey="s">
+    </form>
+  </div>
+  <div id="flash-message"></div>
+</nav>
+<div class="headsup"><a href='/conferences/index.php#id2017-12-27-1'>PHPKonf: Istanbul PHP Conference 2017</a></div>
+<nav id="trick"><div><dl>
+<dt><a href='/manual/en/getting-started.php'>Getting Started</a></dt>
+	<dd><a href='/manual/en/introduction.php'>Introduction</a></dd>
+	<dd><a href='/manual/en/tutorial.php'>A simple tutorial</a></dd>
+<dt><a href='/manual/en/langref.php'>Language Reference</a></dt>
+	<dd><a href='/manual/en/language.basic-syntax.php'>Basic syntax</a></dd>
+	<dd><a href='/manual/en/language.types.php'>Types</a></dd>
+	<dd><a href='/manual/en/language.variables.php'>Variables</a></dd>
+	<dd><a href='/manual/en/language.constants.php'>Constants</a></dd>
+	<dd><a href='/manual/en/language.expressions.php'>Expressions</a></dd>
+	<dd><a href='/manual/en/language.operators.php'>Operators</a></dd>
+	<dd><a href='/manual/en/language.control-structures.php'>Control Structures</a></dd>
+	<dd><a href='/manual/en/language.functions.php'>Functions</a></dd>
+	<dd><a href='/manual/en/language.oop5.php'>Classes and Objects</a></dd>
+	<dd><a href='/manual/en/language.namespaces.php'>Namespaces</a></dd>
+	<dd><a href='/manual/en/language.errors.php'>Errors</a></dd>
+	<dd><a href='/manual/en/language.exceptions.php'>Exceptions</a></dd>
+	<dd><a href='/manual/en/language.generators.php'>Generators</a></dd>
+	<dd><a href='/manual/en/language.references.php'>References Explained</a></dd>
+	<dd><a href='/manual/en/reserved.variables.php'>Predefined Variables</a></dd>
+	<dd><a href='/manual/en/reserved.exceptions.php'>Predefined Exceptions</a></dd>
+	<dd><a href='/manual/en/reserved.interfaces.php'>Predefined Interfaces and Classes</a></dd>
+	<dd><a href='/manual/en/context.php'>Context options and parameters</a></dd>
+	<dd><a href='/manual/en/wrappers.php'>Supported Protocols and Wrappers</a></dd>
+</dl>
+<dl>
+<dt><a href='/manual/en/security.php'>Security</a></dt>
+	<dd><a href='/manual/en/security.intro.php'>Introduction</a></dd>
+	<dd><a href='/manual/en/security.general.php'>General considerations</a></dd>
+	<dd><a href='/manual/en/security.cgi-bin.php'>Installed as CGI binary</a></dd>
+	<dd><a href='/manual/en/security.apache.php'>Installed as an Apache module</a></dd>
+	<dd><a href='/manual/en/security.sessions.php'>Session Security</a></dd>
+	<dd><a href='/manual/en/security.filesystem.php'>Filesystem Security</a></dd>
+	<dd><a href='/manual/en/security.database.php'>Database Security</a></dd>
+	<dd><a href='/manual/en/security.errors.php'>Error Reporting</a></dd>
+	<dd><a href='/manual/en/security.globals.php'>Using Register Globals</a></dd>
+	<dd><a href='/manual/en/security.variables.php'>User Submitted Data</a></dd>
+	<dd><a href='/manual/en/security.magicquotes.php'>Magic Quotes</a></dd>
+	<dd><a href='/manual/en/security.hiding.php'>Hiding PHP</a></dd>
+	<dd><a href='/manual/en/security.current.php'>Keeping Current</a></dd>
+<dt><a href='/manual/en/features.php'>Features</a></dt>
+	<dd><a href='/manual/en/features.http-auth.php'>HTTP authentication with PHP</a></dd>
+	<dd><a href='/manual/en/features.cookies.php'>Cookies</a></dd>
+	<dd><a href='/manual/en/features.sessions.php'>Sessions</a></dd>
+	<dd><a href='/manual/en/features.xforms.php'>Dealing with XForms</a></dd>
+	<dd><a href='/manual/en/features.file-upload.php'>Handling file uploads</a></dd>
+	<dd><a href='/manual/en/features.remote-files.php'>Using remote files</a></dd>
+	<dd><a href='/manual/en/features.connection-handling.php'>Connection handling</a></dd>
+	<dd><a href='/manual/en/features.persistent-connections.php'>Persistent Database Connections</a></dd>
+	<dd><a href='/manual/en/features.safe-mode.php'>Safe Mode</a></dd>
+	<dd><a href='/manual/en/features.commandline.php'>Command line usage</a></dd>
+	<dd><a href='/manual/en/features.gc.php'>Garbage Collection</a></dd>
+	<dd><a href='/manual/en/features.dtrace.php'>DTrace Dynamic Tracing</a></dd>
+</dl>
+<dl>
+<dt><a href='/manual/en/funcref.php'>Function Reference</a></dt>
+	<dd><a href='/manual/en/refs.basic.php.php'>Affecting PHP's Behaviour</a></dd>
+	<dd><a href='/manual/en/refs.utilspec.audio.php'>Audio Formats Manipulation</a></dd>
+	<dd><a href='/manual/en/refs.remote.auth.php'>Authentication Services</a></dd>
+	<dd><a href='/manual/en/refs.utilspec.cmdline.php'>Command Line Specific Extensions</a></dd>
+	<dd><a href='/manual/en/refs.compression.php'>Compression and Archive Extensions</a></dd>
+	<dd><a href='/manual/en/refs.creditcard.php'>Credit Card Processing</a></dd>
+	<dd><a href='/manual/en/refs.crypto.php'>Cryptography Extensions</a></dd>
+	<dd><a href='/manual/en/refs.database.php'>Database Extensions</a></dd>
+	<dd><a href='/manual/en/refs.calendar.php'>Date and Time Related Extensions</a></dd>
+	<dd><a href='/manual/en/refs.fileprocess.file.php'>File System Related Extensions</a></dd>
+	<dd><a href='/manual/en/refs.international.php'>Human Language and Character Encoding Support</a></dd>
+	<dd><a href='/manual/en/refs.utilspec.image.php'>Image Processing and Generation</a></dd>
+	<dd><a href='/manual/en/refs.remote.mail.php'>Mail Related Extensions</a></dd>
+	<dd><a href='/manual/en/refs.math.php'>Mathematical Extensions</a></dd>
+	<dd><a href='/manual/en/refs.utilspec.nontext.php'>Non-Text MIME Output</a></dd>
+	<dd><a href='/manual/en/refs.fileprocess.process.php'>Process Control Extensions</a></dd>
+	<dd><a href='/manual/en/refs.basic.other.php'>Other Basic Extensions</a></dd>
+	<dd><a href='/manual/en/refs.remote.other.php'>Other Services</a></dd>
+	<dd><a href='/manual/en/refs.search.php'>Search Engine Extensions</a></dd>
+	<dd><a href='/manual/en/refs.utilspec.server.php'>Server Specific Extensions</a></dd>
+	<dd><a href='/manual/en/refs.basic.session.php'>Session Extensions</a></dd>
+	<dd><a href='/manual/en/refs.basic.text.php'>Text Processing</a></dd>
+	<dd><a href='/manual/en/refs.basic.vartype.php'>Variable and Type Related Extensions</a></dd>
+	<dd><a href='/manual/en/refs.webservice.php'>Web Services</a></dd>
+	<dd><a href='/manual/en/refs.utilspec.windows.php'>Windows Only Extensions</a></dd>
+	<dd><a href='/manual/en/refs.xml.php'>XML Manipulation</a></dd>
+	<dd><a href='/manual/en/refs.ui.php'>GUI Extensions</a></dd>
+</dl>
+<dl>
+<dt>Keyboard Shortcuts</dt><dt>?</dt>
+<dd>This help</dd>
+<dt>j</dt>
+<dd>Next menu item</dd>
+<dt>k</dt>
+<dd>Previous menu item</dd>
+<dt>g p</dt>
+<dd>Previous man page</dd>
+<dt>g n</dt>
+<dd>Next man page</dd>
+<dt>G</dt>
+<dd>Scroll to bottom</dd>
+<dt>g g</dt>
+<dd>Scroll to top</dd>
+<dt>g h</dt>
+<dd>Goto homepage</dd>
+<dt>g s</dt>
+<dd>Goto search<br>(current page)</dd>
+<dt>/</dt>
+<dd>Focus search box</dd>
+</dl></div></nav>
+<div id="goto">
+    <div class="search">
+         <div class="text"></div>
+         <div class="results"><ul></ul></div>
+   </div>
+</div>
+
+
+
+
+
+<div id="layout" class="clearfix">
+  <section id="layout-content">
+
+<h1>Unsupported Historical Releases</h1>
+
+<p>
+ We have collected all the official information and code available for
+ past PHP releases. You can find more details on the current release
+ on <a href="/downloads.php">our downloads page</a>. Please note that
+ <em>older releases are listed for archival purposes only, and
+ they are no longer supported</em>.
+</p>
+
+<p>
+ <em>Note to Windows users: Only PHP 5.3+ versions are available as both VC6 and VC9 builds.
+ All versions prior were built using VC6.</em>
+</p>
+
+<a id="v7"></a><a id="7.0.13"></a>
+<h2>7.0.13</h2>
+<ul>
+ <li>Released: 10 Nov 2016</li>
+ <li>Announcement: <a href="/releases/7_0_13.php">English</a> </li>
+ <li><a href="/ChangeLog-7.php#7.0.13">ChangeLog</a></li>
+ <li>
+  Download:
+<ul>
+ <li>
+<a href="/get/php-7.0.13.tar.bz2/from/a/mirror">PHP 7.0.13 (tar.bz2)</a><br>
+<span class="md5sum">md5: f62d1c9ddb3a791b7eac423c7b2a769c</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.13.tar.gz/from/a/mirror">PHP 7.0.13 (tar.gz)</a><br>
+<span class="md5sum">md5: 79ee358b661a4b70ee3ce1f6ab02df96</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.13.tar.xz/from/a/mirror">PHP 7.0.13 (tar.xz)</a><br>
+<span class="md5sum">md5: eb117bf1d1efc99c522f132b265a3402</span>
+ </li>
+</ul>
+  </li>
+ </ul>
+<a id="7.0.12"></a>
+<h2>7.0.12</h2>
+<ul>
+ <li>Released: 13 Oct 2016</li>
+ <li>Announcement: <a href="/releases/7_0_12.php">English</a> </li>
+ <li><a href="/ChangeLog-7.php#7.0.12">ChangeLog</a></li>
+ <li>
+  Download:
+<ul>
+ <li>
+<a href="/get/php-7.0.12.tar.bz2/from/a/mirror">PHP 7.0.12 (tar.bz2)</a><br>
+<span class="md5sum">md5: d7b11b40d84ed1f590e5f086f3711a3c</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.12.tar.gz/from/a/mirror">PHP 7.0.12 (tar.gz)</a><br>
+<span class="md5sum">md5: 5dd00a65a1d76a4792f6989d4576623d</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.12.tar.xz/from/a/mirror">PHP 7.0.12 (tar.xz)</a><br>
+<span class="md5sum">md5: bdcc4dbdac90c2a39422786653059f70</span>
+ </li>
+</ul>
+  </li>
+ </ul>
+<a id="7.0.11"></a>
+<h2>7.0.11</h2>
+<ul>
+ <li>Released: 15 Sep 2016</li>
+ <li>Announcement: <a href="/releases/7_0_11.php">English</a> </li>
+ <li><a href="/ChangeLog-7.php#7.0.11">ChangeLog</a></li>
+ <li>
+  Download:
+<ul>
+ <li>
+<a href="/get/php-7.0.11.tar.bz2/from/a/mirror">PHP 7.0.11 (tar.bz2)</a><br>
+<span class="md5sum">md5: daec0bee2e5cbec4b25535b9556f38bd</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.11.tar.gz/from/a/mirror">PHP 7.0.11 (tar.gz)</a><br>
+<span class="md5sum">md5: c2f285a11f05fe0f4f8a5d36a6814781</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.11.tar.xz/from/a/mirror">PHP 7.0.11 (tar.xz)</a><br>
+<span class="md5sum">md5: 9a6013a5e9f258bbfb62ae5ac66b72da</span>
+ </li>
+</ul>
+  </li>
+ </ul>
+<a id="7.0.10"></a>
+<h2>7.0.10</h2>
+<ul>
+ <li>Released: 18 Aug 2016</li>
+ <li>Announcement: <a href="/releases/7_0_10.php">English</a> </li>
+ <li><a href="/ChangeLog-7.php#7.0.10">ChangeLog</a></li>
+ <li>
+  Download:
+<ul>
+ <li>
+<a href="/get/php-7.0.10.tar.bz2/from/a/mirror">PHP 7.0.10 (tar.bz2)</a><br>
+<span class="md5sum">md5: cd1d27be3f522b0543e43c8c2b7116e4</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.10.tar.gz/from/a/mirror">PHP 7.0.10 (tar.gz)</a><br>
+<span class="md5sum">md5: e02b20546a227d23ce147e5a566c73b5</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.10.tar.xz/from/a/mirror">PHP 7.0.10 (tar.xz)</a><br>
+<span class="md5sum">md5: 6f087f16514b6c442e8009a5828827b7</span>
+ </li>
+</ul>
+  </li>
+ </ul>
+<a id="7.0.9"></a>
+<h2>7.0.9</h2>
+<ul>
+ <li>Released: 21 Jul 2016</li>
+ <li>Announcement: <a href="/releases/7_0_9.php">English</a> </li>
+ <li><a href="/ChangeLog-7.php#7.0.9">ChangeLog</a></li>
+ <li>
+  Download:
+<ul>
+ <li>
+<a href="/get/php-7.0.9.tar.bz2/from/a/mirror">PHP 7.0.9 (tar.bz2)</a><br>
+<span class="md5sum">md5: 63b32d3e97df7b30c2bcd138ef0b21c0</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.9.tar.gz/from/a/mirror">PHP 7.0.9 (tar.gz)</a><br>
+<span class="md5sum">md5: 32ea3ce54d7d5ed03c6c600dffd65813</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.9.tar.xz/from/a/mirror">PHP 7.0.9 (tar.xz)</a><br>
+<span class="md5sum">md5: 6294813fb3c8158cfde74302f573cac7</span>
+ </li>
+</ul>
+  </li>
+ </ul>
+<a id="7.0.8"></a>
+<h2>7.0.8</h2>
+<ul>
+ <li>Released: 23 Jun 2016</li>
+ <li>Announcement: <a href="/releases/7_0_8.php">English</a> </li>
+ <li><a href="/ChangeLog-7.php#7.0.8">ChangeLog</a></li>
+ <li>
+  Download:
+<ul>
+ <li>
+<a href="/get/php-7.0.8.tar.bz2/from/a/mirror">PHP 7.0.8 (tar.bz2)</a><br>
+<span class="md5sum">md5: d4f67b081a3c1b0b35f729ef8131cdda</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.8.tar.gz/from/a/mirror">PHP 7.0.8 (tar.gz)</a><br>
+<span class="md5sum">md5: 642d86f3269404abc1bbfd887b682ccf</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.8.tar.xz/from/a/mirror">PHP 7.0.8 (tar.xz)</a><br>
+<span class="md5sum">md5: c4438583c95d3ddf746929d7fcb61045</span>
+ </li>
+</ul>
+  </li>
+ </ul>
+<a id="7.0.7"></a>
+<h2>7.0.7</h2>
+<ul>
+ <li>Released: 26 May 2016</li>
+ <li>Announcement: <a href="/releases/7_0_7.php">English</a> </li>
+ <li><a href="/ChangeLog-7.php#7.0.7">ChangeLog</a></li>
+ <li>
+  Download:
+<ul>
+ <li>
+<a href="/get/php-7.0.7.tar.bz2/from/a/mirror">PHP 7.0.7 (tar.bz2)</a><br>
+<span class="md5sum">md5: cc231de15146ca14a69610f695995ab8</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.7.tar.gz/from/a/mirror">PHP 7.0.7 (tar.gz)</a><br>
+<span class="md5sum">md5: 197ec66d134da8968ddd0b89f1cfac2a</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.7.tar.xz/from/a/mirror">PHP 7.0.7 (tar.xz)</a><br>
+<span class="md5sum">md5: 75f8d1693a470cefe2a50abd283eb291</span>
+ </li>
+</ul>
+  </li>
+ </ul>
+<a id="7.0.6"></a>
+<h2>7.0.6</h2>
+<ul>
+ <li>Released: 28 Apr 2016</li>
+ <li>Announcement: <a href="/releases/7_0_6.php">English</a> </li>
+ <li><a href="/ChangeLog-7.php#7.0.6">ChangeLog</a></li>
+ <li>
+  Download:
+<ul>
+ <li>
+<a href="/get/php-7.0.6.tar.bz2/from/a/mirror">PHP 7.0.6 (tar.bz2)</a><br>
+<span class="md5sum">md5: c89a1046ff06f6aff699057376e297b6</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.6.tar.gz/from/a/mirror">PHP 7.0.6 (tar.gz)</a><br>
+<span class="md5sum">md5: c9e2ff2d6f843a584179ce96e63e38f9</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.6.tar.xz/from/a/mirror">PHP 7.0.6 (tar.xz)</a><br>
+<span class="md5sum">md5: 5f0c5d999a6b5c700b31fd9618d5651d</span>
+ </li>
+</ul>
+  </li>
+ </ul>
+<a id="7.0.5"></a>
+<h2>7.0.5</h2>
+<ul>
+ <li>Released: 31 Mar 2016</li>
+ <li>Announcement: <a href="/releases/7_0_5.php">English</a> </li>
+ <li><a href="/ChangeLog-7.php#7.0.5">ChangeLog</a></li>
+ <li>
+  Download:
+<ul>
+ <li>
+<a href="/get/php-7.0.5.tar.bz2/from/a/mirror">PHP 7.0.5 (tar.bz2)</a><br>
+<span class="md5sum">md5: b15e6836babcbf0aa446678ee38f896b</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.5.tar.gz/from/a/mirror">PHP 7.0.5 (tar.gz)</a><br>
+<span class="md5sum">md5: c8379f3875caf95ce14266ca8212eb4e</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.5.tar.xz/from/a/mirror">PHP 7.0.5 (tar.xz)</a><br>
+<span class="md5sum">md5: dcaaf14356875b80f937cc6700c58acb</span>
+ </li>
+</ul>
+  </li>
+ </ul>
+<a id="7.0.4"></a>
+<h2>7.0.4</h2>
+<ul>
+ <li>Released: 03 Mar 2016</li>
+ <li>Announcement: <a href="/releases/7_0_4.php">English</a> </li>
+ <li><a href="/ChangeLog-7.php#7.0.4">ChangeLog</a></li>
+ <li>
+  Download:
+<ul>
+ <li>
+<a href="/get/php-7.0.4.tar.bz2/from/a/mirror">PHP 7.0.4 (tar.bz2)</a><br>
+<span class="md5sum">md5: 0171201350941327399a5c3e678a86e5</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.4.tar.gz/from/a/mirror">PHP 7.0.4 (tar.gz)</a><br>
+<span class="md5sum">md5: ce986fe03df3d1050966fdea21224040</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.4.tar.xz/from/a/mirror">PHP 7.0.4 (tar.xz)</a><br>
+<span class="md5sum">md5: 82c60fc8167dd964119447da539af4f7</span>
+ </li>
+</ul>
+  </li>
+ </ul>
+<a id="7.0.3"></a>
+<h2>7.0.3</h2>
+<ul>
+ <li>Released: 04 Feb 2016</li>
+ <li>Announcement: <a href="/releases/7_0_3.php">English</a> </li>
+ <li><a href="/ChangeLog-7.php#7.0.3">ChangeLog</a></li>
+ <li>
+  Download:
+<ul>
+ <li>
+<a href="/get/php-7.0.3.tar.bz2/from/a/mirror">PHP 7.0.3 (tar.bz2)</a><br>
+<span class="md5sum">md5: 702e9b8e2cb704fdd50137e39f53f50b</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.3.tar.gz/from/a/mirror">PHP 7.0.3 (tar.gz)</a><br>
+<span class="md5sum">md5: 235b1217a9ec7bee6e0bd517e3636d45</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.3.tar.xz/from/a/mirror">PHP 7.0.3 (tar.xz)</a><br>
+<span class="md5sum">md5: 3c5d2b5b392b78fa92c48822e25ccb56</span>
+ </li>
+</ul>
+  </li>
+ </ul>
+<a id="7.0.2"></a>
+<h2>7.0.2</h2>
+<ul>
+ <li>Released: 07 Jan 2015</li>
+ <li>Announcement: <a href="/releases/7_0_2.php">English</a> </li>
+ <li><a href="/ChangeLog-7.php#7.0.2">ChangeLog</a></li>
+ <li>
+  Download:
+<ul>
+ <li>
+<a href="/get/php-7.0.2.tar.bz2/from/a/mirror">PHP 7.0.2 (tar.bz2)</a><br>
+<span class="md5sum">md5: 8c71b2ffd29311e4b7ac7788bd107554</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.2.tar.gz/from/a/mirror">PHP 7.0.2 (tar.gz)</a><br>
+<span class="md5sum">md5: 992667cdad38c5f77a4bb6c62c9a942f</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.2.tar.xz/from/a/mirror">PHP 7.0.2 (tar.xz)</a><br>
+<span class="md5sum">md5: ce5964672e4ec0b66ff088a6bafde8c7</span>
+ </li>
+</ul>
+  </li>
+ </ul>
+<a id="7.0.1"></a>
+<h2>7.0.1</h2>
+<ul>
+ <li>Released: 17 Dec 2015</li>
+ <li>Announcement: <a href="/releases/7_0_1.php">English</a> </li>
+ <li><a href="/ChangeLog-7.php#7.0.1">ChangeLog</a></li>
+ <li>
+  Download:
+<ul>
+ <li>
+<a href="/get/php-7.0.1.tar.bz2/from/a/mirror">PHP 7.0.1 (tar.bz2)</a><br>
+<span class="md5sum">md5: c999d29cb8861aa71574a11e8c635691</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.1.tar.gz/from/a/mirror">PHP 7.0.1 (tar.gz)</a><br>
+<span class="md5sum">md5: 2da2981724d5c99ab7dc6e2164c8e756</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.1.tar.xz/from/a/mirror">PHP 7.0.1 (tar.xz)</a><br>
+<span class="md5sum">md5: 23aba67d57d53145becacb982ed498d5</span>
+ </li>
+</ul>
+  </li>
+ </ul>
+<a id="7.0.0"></a>
+<h2>7.0.0</h2>
+<ul>
+ <li>Released: 03 Dec 2015</li>
+ <li>Announcement: <a href="/releases/7_0_0.php">English</a> </li>
+ <li><a href="/ChangeLog-7.php#7.0.0">ChangeLog</a></li>
+ <li>
+  Download:
+<ul>
+ <li>
+<a href="/get/php-7.0.0.tar.bz2/from/a/mirror">PHP 7.0.0 (tar.bz2)</a><br>
+<span class="md5sum">md5: e53384277331c0613f3b2d7f9151adc1</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.0.tar.gz/from/a/mirror">PHP 7.0.0 (tar.gz)</a><br>
+<span class="md5sum">md5: 4ac36fc0c028c7f704b8485b9cd636e9</span>
+ </li>
+ <li>
+<a href="/get/php-7.0.0.tar.xz/from/a/mirror">PHP 7.0.0 (tar.xz)</a><br>
+<span class="md5sum">md5: 394e4d6c517078ca3e23acf633c5ed27</span>
+ </li>
+</ul>
+  </li>
+ </ul>
+<a id="v5"></a>
+<hr>
+<a id="5.6.28"></a>
+<h2>5.6.28</h2>
+<ul>
+ <li>Released: 10 Nov 2016</li>
+ <li>Announcement: <a href="/releases/5_6_28.php">English</a> </li>
+ <li><a href="/ChangeLog-5.php#5.6.28">ChangeLog</a></li>
+ <li>
+  Download:
+<ul>
+ <li>
+<a href="/get/php-5.6.28.tar.bz2/from/a/mirror">PHP 5.6.28 (tar.bz2)</a><br>
+<span class="md5sum">md5: 56758fdb5ff156a36fb600950b7999aa</span>
+ </li>
+ <li>
+<a href="/get/php-5.6.28.tar.gz/from/a/mirror">PHP 5.6.28 (tar.gz)</a><br>
+<span class="md5sum">md5: db41e97006dd9660208c0f3d32ce192e</span>
+ </li>
+ <li>
+<a href="/get/php-5.6.28.tar.xz/from/a/mirror">PHP 5.6.28 (tar.xz)</a><br>
+<span class="md5sum">md5: 1e01c66b2e67ab3b56a6180ee560fe4c</span>
+ </li>
+</ul>
+  </li>
+ </ul>
+<a id="5.6.27"></a>
+<h2>5.6.27</h2>
+<ul>
+ <li>Released: 13 Oct 2016</li>
+ <li>Announcement: <a href="/releases/5_6_27.php">English</a> </li>
+ <li><a href="/ChangeLog-5.php#5.6.27">ChangeLog</a></li>
+ <li>
+  Download:
+<ul>
+ <li>
+<a href="/get/php-5.6.27.tar.bz2/from/a/mirror">PHP 5.6.27 (tar.bz2)</a><br>
+<span class="md5sum">md5: b5a66d238c27cfdc6cdf5e83062e50d9</span>
+ </li>
+ <li>
+<a href="/get/php-5.6.27.tar.gz/from/a/mirror">PHP 5.6.27 (tar.gz)</a><br>
+<span class="md5sum">md5: a1ca69f4d44fe83d3bb6f7c459ce512f</span>
+ </li>
+ <li>
+<a href="/get/php-5.6.27.tar.xz/from/a/mirror">PHP 5.6.27 (tar.xz)</a><br>
+<span class="md5sum">md5: 9ce6efc96d5ab81ef808f8ed6b1f242d</span>
+ </li>
+</ul>
+  </li>
+ </ul>
+<a id="4.3.2"></a>
+<h2>4.3.2</h2>
+<ul>
+ <li>Released: 29 May 2003</li>
+ <li>Announcement: <a href="/releases/4_3_2.php">English</a> <a href="/releases/4_3_2_fr.php">French</a> </li>
+ <li><a href="/ChangeLog-4.php#4.3.2">ChangeLog</a></li>
+ <li>
+  Download:
+<a href="http://museum.php.net/php4/php-4.3.2.tar.gz">Source (tar.gz)</a>
+<a href="http://museum.php.net/php4/php-4.3.2.tar.bz2">Source (tar.bz2)</a>
+<a href="http://museum.php.net/win32/php-4.3.2-Win32.zip">Windows binary</a>
+<a href="http://museum.php.net/win32/php-4.3.2-installer.exe">Windows installer</a>
+  </li>
+ </ul>
+<a id="4.0.1"></a>
+<h2>4.0.1</h2>
+<ul>
+ <li>Released: 28 June 2000</li>
+ <li>Announcement: <a href="http://news.php.net/php.announce/23">English</a> </li>
+ <li><a href="/ChangeLog-4.php#4.0.1">ChangeLog</a></li>
+ <li>
+  Download:
+<a href="http://museum.php.net/php4/php-4.0.1.tar.gz">Source (tar.gz)</a>
+<a href="http://museum.php.net/php4/php-4.0.1pl2.tar.gz">4.0.1pl2 Source (tar.gz)</a>
+<a href="http://museum.php.net/win32/php-4.0.1-Win32.zip">Windows binary</a>
+<a href="http://museum.php.net/win32/php-4.0.1pl1-Win32.zip">4.0.1pl1 Windows binary</a>
+  </li>
+ </ul>
+<a id="4.0.0"></a>
+<h2>4.0.0</h2>
+<ul>
+ <li>Released: 22 May 2000</li>
+ <li>Announcement: <a href="http://news.php.net/php.announce/22">English</a> </li>
+ <li><a href="/ChangeLog-4.php#4.0.0">ChangeLog</a></li>
+ <li>
+  Download:
+<a href="http://museum.php.net/php4/php-4.0.0.tar.gz">Source (tar.gz)</a>
+<a href="http://museum.php.net/win32/php-4.0.0-Win32.zip">Windows binary</a>
+  </li>
+ </ul>
+<a id="v3"></a>
+<hr>
+<a id="3.0.x"></a>
+<h2>3.0.x</h2>
+<ul>
+ <li>Released: 20 Oct 2000</li>
+ <li>Announcement: None</li>
+
+ <li>
+  Download:
+<a href="http://museum.php.net/php3/php-3.0.18.tar.gz">PHP 3.0.18 Source Code</a>
+<a href="http://museum.php.net/win32/php-3.0.17-win32.zip">PHP 3.0.17 Windows binary</a>
+  </li>
+ </ul>
+    </section><!-- layout-content -->
+    
+<aside class="tips">
+    <div class="inner">
+<div class="panel">
+  <a class="headline" href="/supported-versions.php">Supported Versions</a>
+  <div class="body">
+    Check the <a href="/supported-versions.php">supported versions</a> page for
+    more information on the support lifetime of each version of PHP.
+  </div>
+</div>
+
+<div class="panel">
+  <a class="headline" href="/eol.php">End of Life Dates</a>
+  <div class="body">
+    <p>The most recent branches to reach end of life status are:</p>
+    <ul><li>5.5: 21 Jul 2016</li><li>5.4: 3 Sep 2015</li></ul>
+  </div>
+</div>
+
+<p class="panel">
+ <a href="/ChangeLog-7.php">PHP 7 ChangeLog</a>
+</p>
+<p class="panel">
+ <a href="/ChangeLog-5.php">PHP 5 ChangeLog</a>
+</p>
+<p class="panel">
+ <a href="/ChangeLog-4.php">PHP 4 ChangeLog</a>
+</p>
+
+<div class="panel">
+ <a href="http://museum.php.net/">PHP Museum</a>
+</div>
+
+<div class="panel">
+  <div class="headline">Want a PHP serialized list of the PHP releases?</div>
+  <div class="body">
+    <ul>
+      <li>Add <a href="?serialize">?serialize</a> to the url</li>
+      <li>Only want PHP 5 releases? <a href="?serialize&amp;version=5">&amp;version=5</a></li>
+      <li>The last 3? <a href="?serialize&amp;version=5&amp;max=3">&amp;max=3</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="headline">Want a JSON list of the PHP releases?</div>
+  <div class="body">
+    <ul>
+      <li>Add <a href="?json">?json</a> to the url</li>
+      <li>Only want PHP 5 releases? <a href="?json&amp;version=5">&amp;version=5</a></li>
+      <li>The last 3? <a href="?json&amp;version=5&amp;max=3">&amp;max=3</a></li>
+    </ul>
+  </div>
+</div>
+</div>
+</aside>
+
+  </div><!-- layout -->
+         
+  <footer>
+    <div class="container footer-content">
+      <div class="row-fluid">
+      <ul class="footmenu">
+        <li><a href="/copyright.php">Copyright &copy; 2001-2017 The PHP Group</a></li>
+        <li><a href="/my.php">My PHP.net</a></li>
+        <li><a href="/contact.php">Contact</a></li>
+        <li><a href="/sites.php">Other PHP.net sites</a></li>
+        <li><a href="/mirrors.php">Mirror sites</a></li>
+        <li><a href="/privacy.php">Privacy policy</a></li>
+      </ul>
+      </div>
+    </div>
+  </footer>
+
+    
+ <!-- External and third party libraries. -->
+ <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://php.net/cached.php?t=1421837618&amp;f=/js/ext/modernizr.js"></script>
+<script type="text/javascript" src="http://php.net/cached.php?t=1421837618&amp;f=/js/ext/hogan-2.0.0.min.js"></script>
+<script type="text/javascript" src="http://php.net/cached.php?t=1421837618&amp;f=/js/ext/typeahead.min.js"></script>
+<script type="text/javascript" src="http://php.net/cached.php?t=1421837618&amp;f=/js/ext/mousetrap.min.js"></script>
+<script type="text/javascript" src="http://php.net/cached.php?t=1421837618&amp;f=/js/search.js"></script>
+<script type="text/javascript" src="http://php.net/cached.php?t=1478627406&amp;f=/js/common.js"></script>
+
+<a id="toTop" href="javascript:;"><span id="toTopHover"></span><img width="40" height="40" alt="To Top" src="/images/to-top@2x.png"></a>
+
+</body>
+</html>
+
