@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import pl.hws.phptester.enums.VersionStatusEnum;
 
 @Getter
 @Setter
@@ -28,4 +29,25 @@ public class VersionEntity implements Serializable {
     private String releaseDate;
 
     private String downloadLink;
+
+    private VersionStatusEnum status;
+
+    public String getStatusText() {
+        if (status == null) {
+            return "unknown";
+        }
+
+        switch (status) {
+            case NOT_FETCHED:
+                return "not fetched";
+            case UNPACKED:
+                return "unpacked";
+            case FETCHED:
+                return "fetched";
+            case COMPILED:
+                return "compiled";
+            default:
+                return "unknown";
+        }
+    }
 }

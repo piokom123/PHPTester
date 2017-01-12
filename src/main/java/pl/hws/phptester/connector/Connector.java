@@ -448,6 +448,8 @@ public class Connector implements AutoCloseable {
     }
 
     public ConnectorResponse performBinaryGET(String url, String referer, Integer triesCount) {
+        Context.getInstance().showMessage("Performing binary GET to " + url + " (try: " + Integer.toString(triesCount) + ")");
+
         ConnectorResponse result = new ConnectorResponse();
 
         try {
