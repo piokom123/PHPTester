@@ -42,9 +42,17 @@ public class PHPNetService {
             entity.setVersion(element.text());
 
             for (Element aElement : ulElement.getElementsByTag("a")) {
-                if ((aElement.text().contains("source") || aElement.text().contains("tar.gz"))
-                        && aElement.attr("href").contains("tar.gz")) {
-                    entity.setDownloadLink(aElement.attr("href"));
+                if ((aElement.text().toLowerCase().contains("source") || aElement.text().toLowerCase().contains("tar.gz"))
+                        && aElement.attr("href").toLowerCase().contains("tar.gz")) {
+                    String link = aElement.attr("href");
+
+                    if (link.startsWith("/")) {
+                        link = "http://php.net" + link;
+                    }
+
+                    link = link.replace("from/a/mirror", "from/this/mirror");
+
+                    entity.setDownloadLink(link);
                 }
             }
 
