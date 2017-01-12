@@ -5,7 +5,26 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.*?> 
+<?import javafx.collections.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.hws.phptester.controllers.HomeController">
-    <Label text="test"></Label>
-</AnchorPane>
+<TableView xmlns:fx="http://javafx.com/fxml/1" layoutX="14.0" layoutY="14.0" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" fx:id="versionsTable">
+    <columns>
+        <TableColumn text="Version">
+            <cellValueFactory>
+                <PropertyValueFactory property="version" />
+            </cellValueFactory>
+        </TableColumn>
+        <TableColumn text="Release date">
+            <cellValueFactory>
+                <PropertyValueFactory property="releaseDate" />
+            </cellValueFactory>
+        </TableColumn>
+        <TableColumn text="Download link">
+            <cellValueFactory>
+                <PropertyValueFactory property="downloadLink" />
+            </cellValueFactory>
+        </TableColumn>
+    </columns>
+</TableView>

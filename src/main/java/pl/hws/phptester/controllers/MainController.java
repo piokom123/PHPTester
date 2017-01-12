@@ -8,25 +8,28 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 
 public class MainController implements Initializable {
     @FXML
-    private AnchorPane currentPane;
-    
+    private StackPane currentPane;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }
-
-    @FXML
-    private void openNext() {
-        URL url = getClass().getResource("fxml/home.fxml");
-
         currentPane.getChildren().clear();
 
         try {
-            currentPane.getChildren().add((Node) FXMLLoader.load(getClass().getResource("/fxml/home.fxml")));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/home.fxml"));
+
+            ControllerInterface controller = new HomeController();
+
+            controller.setContentPane(currentPane);
+
+            loader.setController(controller);
+
+            currentPane.getChildren().add((Node) loader.load());
+
+            controller.initialized();
         } catch (IOException ex) {
             System.out.println(ex.getLocalizedMessage());
 
