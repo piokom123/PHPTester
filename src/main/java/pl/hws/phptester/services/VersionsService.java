@@ -12,11 +12,17 @@ import java.nio.file.Paths;
 import java.nio.file.attribute.PosixFilePermissions;
 import java.util.Comparator;
 import java.util.List;
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleDoubleProperty;
+import pl.hws.phptester.Context;
 import pl.hws.phptester.connector.Connector;
 import pl.hws.phptester.connector.ConnectorResponse;
 import pl.hws.phptester.entities.VersionEntity;
+import pl.hws.phptester.entities.CommandResultEntity;
 import pl.hws.phptester.enums.VersionStatusEnum;
 import pl.hws.phptester.helpers.ArchivesHelper;
+import pl.hws.phptester.helpers.CommandsHelper;
+import pl.hws.phptester.entities.ServiceResultEntity;
 
 public class VersionsService {
     private static final VersionsService INSTANCE = new VersionsService();
@@ -58,7 +64,7 @@ public class VersionsService {
                 saveVersions();
             }
         } catch (IOException | SecurityException | ClassNotFoundException ex) {
-            System.err.println(ex.getLocalizedMessage());
+            Context.getInstance().showError(ex);
 
             throw new RuntimeException(ex);
         }
@@ -92,7 +98,7 @@ public class VersionsService {
         try {
             Files.createDirectory(dataFolder, PosixFilePermissions.asFileAttribute(PosixFilePermissions.fromString("rwxrwxrwx")));
         } catch (IOException ex) {
-            System.out.println(ex.getLocalizedMessage());
+            Context.getInstance().showError(ex);
 
             throw new RuntimeException(ex);
         }
@@ -100,7 +106,7 @@ public class VersionsService {
         return true;
     }
 
-    public Boolean downloadVersion(VersionEntity version) {
+    public Boolean downloadVersion(VersionEntity version, SimpleDoubleProperty downloadProgress) {
         Path archivePath = dataFolder.resolve(version.getVersion() + ".tar.gz");
 
         if (Files.exists(archivePath)) {
@@ -108,7 +114,7 @@ public class VersionsService {
         }
 
         try (Connector connector = new Connector()) {
-            ConnectorResponse response = connector.performBinaryGET(version.getDownloadLink());
+            ConnectorResponse response = connector.performBinaryGET(version.getDownloadLink(), archivePath, downloadProgress);
 
             if (response == null || response.getByteContent() == null) {
                 return false;
@@ -118,7 +124,7 @@ public class VersionsService {
 
             return true;
         } catch (IOException ex) {
-            System.out.println(ex.getLocalizedMessage());
+            Context.getInstance().showError(ex);
 
             return false;
         }
@@ -140,7 +146,7 @@ public class VersionsService {
                     .map(Path::toFile)
                     .forEach(File::delete);
             } catch (IOException ex) {
-                System.out.println(ex.getLocalizedMessage());
+                Context.getInstance().showError(ex);
 
                 return false;
             }
@@ -149,12 +155,55 @@ public class VersionsService {
         try {
             Files.createDirectory(versionRoot, PosixFilePermissions.asFileAttribute(PosixFilePermissions.fromString("rwxrwxrwx")));
         } catch (IOException ex) {
-            System.out.println(ex.getLocalizedMessage());
+            Context.getInstance().showError(ex);
 
             return false;
         }
 
         return ArchivesHelper.unpack(archivePath, versionRoot);
+    }
+
+    public ServiceResultEntity compileVersion(VersionEntity version) {
+        Path versionRoot = dataFolder.resolve(version.getVersion());
+
+        if (!Files.exists(versionRoot) || !Files.isDirectory(versionRoot)) {
+            return new ServiceResultEntity(false, "No root folder found");
+        }
+
+        Path configure = versionRoot.resolve("configure");
+        Path shTool = versionRoot.resolve("build/shtool");
+
+        try {
+            if (Files.exists(shTool)) {
+                Files.setPosixFilePermissions(shTool, PosixFilePermissions.fromString("rwxrwxrwx"));
+            } else {
+                return new ServiceResultEntity(false, "./build/shtool not found");
+            }
+
+            if (Files.exists(configure)) {
+                Files.setPosixFilePermissions(configure, PosixFilePermissions.fromString("rwxrwxrwx"));
+            } else {
+                return new ServiceResultEntity(false, "./configure not found");
+            }
+        } catch (IOException ex) {
+            Context.getInstance().showError(ex);
+
+            return new ServiceResultEntity(false, ex.getLocalizedMessage());
+        }
+
+        CommandResultEntity configureResult = CommandsHelper.execute("./configure", versionRoot);
+
+        if (configureResult.getCode() != 0) {
+            return new ServiceResultEntity(false, "Failed to configure", configureResult.getContent());
+        }
+
+        CommandResultEntity makeResult = CommandsHelper.execute("make", versionRoot);
+
+        if (makeResult.getCode() != 0) {
+            return new ServiceResultEntity(false, "Failed to compile", makeResult.getContent());
+        }
+
+        return new ServiceResultEntity(true, "done");
     }
 
     private Boolean reloadVersionsStatuses() {
@@ -205,7 +254,7 @@ public class VersionsService {
 
             objectOutputStream.writeObject(versions);
         } catch (IOException | SecurityException ex) {
-            System.out.println(ex.getLocalizedMessage());
+            Context.getInstance().showError(ex);
 
             return false;
         }

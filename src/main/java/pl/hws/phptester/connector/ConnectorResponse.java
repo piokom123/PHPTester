@@ -12,6 +12,8 @@ public class ConnectorResponse {
 
     private String content;
 
+    private Integer contentLength;
+
     private byte[] byteContent;
 
     private String latestRedirectUrl;

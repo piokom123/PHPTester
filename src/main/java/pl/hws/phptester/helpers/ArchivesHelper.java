@@ -2,14 +2,11 @@ package pl.hws.phptester.helpers;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.ByteBuffer;
-import java.nio.channels.WritableByteChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import static java.nio.file.StandardOpenOption.APPEND;
-import static java.nio.file.StandardOpenOption.CREATE;
 import java.nio.file.attribute.PosixFilePermissions;
-import java.util.EnumSet;
 import org.apache.commons.compress.archivers.ArchiveEntry;
 import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
 import org.apache.commons.compress.compressors.gzip.GzipCompressorInputStream;
@@ -24,18 +21,27 @@ public class ArchivesHelper {
             TarArchiveInputStream tarInputStream = new TarArchiveInputStream(gzipInputStream);
 
             ArchiveEntry entry;
+            String rootFolder = "";
 
             while ((entry = tarInputStream.getNextEntry()) != null) {
-                Path currentPath = destinationFolder.resolve(entry.getName());
+                Path currentPath = destinationFolder.resolve(entry.getName().replace(rootFolder, ""));
 
                 if (entry.isDirectory()) {
+                    if (rootFolder.isEmpty() && entry.getName().contains("php-")) {
+                        rootFolder = entry.getName();
+
+                        continue;
+                    }
+
                     Files.createDirectory(currentPath, PosixFilePermissions.asFileAttribute(PosixFilePermissions.fromString("rwxrwxrwx")));
                 } else {
                     byte[] bytes = new byte[1024];
 
-                    try (WritableByteChannel wbc = Files.newByteChannel(currentPath, EnumSet.of(CREATE, APPEND));) {
+                    try (OutputStream output = Files.newOutputStream(currentPath);) {
                         while ((tarInputStream.read(bytes, 0, 1024)) > -1) {
-                            wbc.write(ByteBuffer.wrap(bytes));
+                            output.write(bytes);
+
+                            bytes = new byte[1024];
                         }
                     }
                 }

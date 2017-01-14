@@ -6,11 +6,14 @@ import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableView;
+import pl.hws.phptester.entities.ServiceResultEntity;
 import pl.hws.phptester.entities.VersionEntity;
 import pl.hws.phptester.helpers.SceneHelper;
 import pl.hws.phptester.services.VersionsService;
@@ -119,13 +122,24 @@ public class HomeController extends AbstractController {
                 for (Object versionObject : versionsTable.getSelectionModel().getSelectedItems()) {
                     VersionEntity version = (VersionEntity) versionObject;
 
-                    SceneHelper.showLoader(contentPane, "Downloading PHP " + version.getVersion());
+                    SimpleDoubleProperty downloadProgress = new SimpleDoubleProperty();
 
-                    versionsService.downloadVersion(version);
+                    SceneHelper.hideLoader(contentPane);
+                    SceneHelper.showLoader(contentPane, "Downloading PHP " + version.getVersion(), downloadProgress);
+
+                    versionsService.downloadVersion(version, downloadProgress);
 
                     SceneHelper.showLoader(contentPane, "Unpacking PHP " + version.getVersion());
 
                     versionsService.unpackVersion(version);
+
+                    SceneHelper.showLoader(contentPane, "Compiling PHP " + version.getVersion());
+
+                    ServiceResultEntity result = versionsService.compileVersion(version);
+
+                    if (!result.getStatus()) {
+                        SceneHelper.showErrorMessage(contentPane, "Failed to compile", result.getMessage(), result.getLog());
+                    }
                 }
 
                 reloadVersions();

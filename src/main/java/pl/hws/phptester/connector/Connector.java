@@ -1,20 +1,15 @@
 package pl.hws.phptester.connector;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.ObjectInput;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.SocketTimeoutException;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +22,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import javafx.beans.property.SimpleDoubleProperty;
 import lombok.Getter;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -387,6 +383,7 @@ public class Connector implements AutoCloseable {
                     }
 
                     result.setLatestRedirectUrl(location);
+                    result.setContentLength(Integer.parseInt(response.getLastHeader("Content-length").getValue()));
 
                     Context.getInstance().showMessage("Connection for GET should close soon");
 
@@ -440,14 +437,18 @@ public class Connector implements AutoCloseable {
     }
 
     public ConnectorResponse performBinaryGET(String url) {
-        return performBinaryGET(url, url, 1);
+        return performBinaryGET(url, null, null, url, 1);
     }
 
-    public ConnectorResponse performBinaryGET(String url, Integer triesCount) {
-        return performBinaryGET(url, url, triesCount);
+    public ConnectorResponse performBinaryGET(String url, Path destination, SimpleDoubleProperty downloadProgress) {
+        return performBinaryGET(url, destination, downloadProgress, url, 1);
     }
 
-    public ConnectorResponse performBinaryGET(String url, String referer, Integer triesCount) {
+    public ConnectorResponse performBinaryGET(String url, Path destination, SimpleDoubleProperty downloadProgress, Integer triesCount) {
+        return performBinaryGET(url, destination, downloadProgress, url, triesCount);
+    }
+
+    public ConnectorResponse performBinaryGET(String url, Path destination, SimpleDoubleProperty downloadProgress, String referer, Integer triesCount) {
         Context.getInstance().showMessage("Performing binary GET to " + url + " (try: " + Integer.toString(triesCount) + ")");
 
         ConnectorResponse result = new ConnectorResponse();
@@ -463,18 +464,41 @@ public class Connector implements AutoCloseable {
 
             CloseableHttpResponse response = this.client.execute(connection, clientContext);
 
+            result.setContentLength(Integer.parseInt(response.getLastHeader("Content-length").getValue()));
+
             HttpEntity entity = response.getEntity();
 
-            try (InputStream buffer = new BufferedInputStream(entity.getContent());
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();) {
-                byte[] byteChunk = new byte[4096];
-                int n;
+            if (destination == null) {
+                try (InputStream buffer = new BufferedInputStream(entity.getContent());
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();) {
+                    byte[] byteChunk = new byte[4096];
+                    int n;
 
-                while ((n = buffer.read(byteChunk)) > 0) {
-                    baos.write(byteChunk, 0, n);
+                    while ((n = buffer.read(byteChunk)) > 0) {
+                        baos.write(byteChunk, 0, n);
+                    }
+
+                    result.setByteContent(baos.toByteArray());
+                }
+            } else {
+                Path tempDestination = destination.getParent().resolve(destination.getFileName() + ".tmp");
+
+                try (InputStream buffer = new BufferedInputStream(entity.getContent());
+                        OutputStream writer = Files.newOutputStream(tempDestination);) {
+                    Integer downloaded = 0;
+                    byte[] byteChunk = new byte[4096];
+                    int n;
+
+                    while ((n = buffer.read(byteChunk)) > 0) {
+                        writer.write(byteChunk, 0, n);
+
+                        downloaded += n;
+
+                        downloadProgress.set(downloaded.doubleValue() / result.getContentLength().doubleValue());
+                    }
                 }
 
-                result.setByteContent(baos.toByteArray());
+                Files.move(tempDestination, destination);
             }
 
             EntityUtils.consume(entity);
@@ -500,7 +524,7 @@ public class Connector implements AutoCloseable {
                 Context.getInstance().showError("Try number " + Integer.toString(triesCount) + " failed on binary GET. Retrying.");
                 Context.getInstance().showError(ex);
 
-                return performBinaryGET(url, referer, ++triesCount);
+                return performBinaryGET(url, destination, downloadProgress, referer, ++triesCount);
             }
 
             Context.getInstance().showError("Try number " + Integer.toString(triesCount) + " failed on binary GET. Max retries count reached, stopping. Message: " + ex.getMessage());
@@ -588,6 +612,7 @@ public class Connector implements AutoCloseable {
             }
 
             result.setLatestRedirectUrl(location);
+            result.setContentLength(Integer.parseInt(response.getLastHeader("Content-length").getValue()));
 
             EntityUtils.consume(entity);
 
