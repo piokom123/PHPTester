@@ -3,7 +3,6 @@ package pl.hws.phptester.helpers;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.ByteBuffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.PosixFilePermissions;
@@ -38,8 +37,10 @@ public class ArchivesHelper {
                     byte[] bytes = new byte[1024];
 
                     try (OutputStream output = Files.newOutputStream(currentPath);) {
-                        while ((tarInputStream.read(bytes, 0, 1024)) > -1) {
-                            output.write(bytes);
+                        Integer readBytes = 0;
+
+                        while ((readBytes = tarInputStream.read(bytes, 0, 1024)) > -1) {
+                            output.write(bytes, 0, readBytes);
 
                             bytes = new byte[1024];
                         }
