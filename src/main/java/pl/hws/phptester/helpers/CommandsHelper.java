@@ -5,10 +5,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Path;
+import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
 import pl.hws.phptester.entities.CommandResultEntity;
 
 public class CommandsHelper {
-    public static CommandResultEntity execute(String command, Path directory) {
+    public static CommandResultEntity execute(String command, Path directory, SimpleStringProperty logs) {
         Process process;
 
         try {
@@ -18,7 +20,9 @@ public class CommandsHelper {
             ps.redirectErrorStream(true);
 
             process = ps.start();
-        } catch (IOException ex) {
+
+            process.waitFor();
+        } catch (IOException | InterruptedException ex) {
             System.out.println("Failed to execute command");
             System.out.println(ex.getLocalizedMessage());
 
@@ -33,13 +37,21 @@ public class CommandsHelper {
             String content = "";
 
             while ((line = reader.readLine()) != null) {
-                SceneHelper.appendLog(line);
+                String currentLIne = line;
+
+                Platform.runLater(() -> {
+                    logs.set(currentLIne);
+                });
 
                 content += line + "\n";
             }
 
             while ((line = errorReader.readLine()) != null) {
-                SceneHelper.appendLog(line);
+                String currentLIne = line;
+
+                Platform.runLater(() -> {
+                    logs.set(currentLIne);
+                });
 
                 content += line + "\n";
             }

@@ -129,13 +129,17 @@ public class HomeController extends AbstractController {
 
                     versionsService.downloadVersion(version, downloadProgress);
 
+                    SceneHelper.hideLoader(contentPane);
                     SceneHelper.showLoader(contentPane, "Unpacking PHP " + version.getVersion());
 
                     versionsService.unpackVersion(version);
 
-                    SceneHelper.showLoader(contentPane, "Compiling PHP " + version.getVersion());
+                    SimpleStringProperty logs = new SimpleStringProperty();
 
-                    ServiceResultEntity result = versionsService.compileVersion(version);
+                    SceneHelper.hideLoader(contentPane);
+                    SceneHelper.showLoader(contentPane, "Compiling PHP " + version.getVersion(), logs);
+
+                    ServiceResultEntity result = versionsService.compileVersion(version, logs);
 
                     if (!result.getStatus()) {
                         SceneHelper.showErrorMessage(contentPane, "Failed to compile", result.getMessage(), result.getLog());

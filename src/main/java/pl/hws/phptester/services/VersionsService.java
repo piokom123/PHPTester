@@ -12,8 +12,8 @@ import java.nio.file.Paths;
 import java.nio.file.attribute.PosixFilePermissions;
 import java.util.Comparator;
 import java.util.List;
-import javafx.beans.property.Property;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
 import pl.hws.phptester.Context;
 import pl.hws.phptester.connector.Connector;
 import pl.hws.phptester.connector.ConnectorResponse;
@@ -163,7 +163,7 @@ public class VersionsService {
         return ArchivesHelper.unpack(archivePath, versionRoot);
     }
 
-    public ServiceResultEntity compileVersion(VersionEntity version) {
+    public ServiceResultEntity compileVersion(VersionEntity version, SimpleStringProperty logs) {
         Path versionRoot = dataFolder.resolve(version.getVersion());
 
         if (!Files.exists(versionRoot) || !Files.isDirectory(versionRoot)) {
@@ -191,13 +191,13 @@ public class VersionsService {
             return new ServiceResultEntity(false, ex.getLocalizedMessage());
         }
 
-        CommandResultEntity configureResult = CommandsHelper.execute("./configure", versionRoot);
+        CommandResultEntity configureResult = CommandsHelper.execute("./configure", versionRoot, logs);
 
         if (configureResult.getCode() != 0) {
             return new ServiceResultEntity(false, "Failed to configure", configureResult.getContent());
         }
 
-        CommandResultEntity makeResult = CommandsHelper.execute("make", versionRoot);
+        CommandResultEntity makeResult = CommandsHelper.execute("make", versionRoot, logs);
 
         if (makeResult.getCode() != 0) {
             return new ServiceResultEntity(false, "Failed to compile", makeResult.getContent());

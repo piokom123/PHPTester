@@ -2,6 +2,7 @@ package pl.hws.phptester.helpers;
 
 import javafx.application.Platform;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -17,27 +18,19 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class SceneHelper {
-    private static TextArea logs = null;
-
-    public static void appendLog(String log) {
-        if (logs == null) {
-            return;
-        }
-
-        Platform.runLater(() -> {
-            if (!logs.isVisible()) {
-                logs.setVisible(true);
-            }
-
-            logs.appendText(log + "\n");
-        });
-    }
-
     public static void showLoader(StackPane contentPane, String message) {
-        showLoader(contentPane, message, null);
+        showLoader(contentPane, message, null, null);
     }
 
     public static void showLoader(StackPane contentPane, String message, SimpleDoubleProperty progress) {
+        showLoader(contentPane, message, progress, null);
+    }
+
+    public static void showLoader(StackPane contentPane, String message, SimpleStringProperty logs) {
+        showLoader(contentPane, message, null, logs);
+    }
+
+    public static void showLoader(StackPane contentPane, String message, SimpleDoubleProperty progress, SimpleStringProperty logs) {
         Platform.runLater(() -> {
             Node labelNode = contentPane.lookup("#loaderLabel");
             if (labelNode != null) {
@@ -69,16 +62,13 @@ public class SceneHelper {
                 box.getChildren().add(progressBar);
             }
 
-            logs = new TextArea();
-            logs.setEditable(false);
-            logs.setWrapText(true);
-            logs.setId("loaderLogs");
-            logs.setVisible(false);
+            if (logs != null) {
+                Label logsLabel = new Label();
 
-            logs.setMaxWidth(Double.MAX_VALUE);
-            logs.setMaxHeight(Double.MAX_VALUE);
+                logsLabel.textProperty().bind(logs);
 
-            box.getChildren().add(logs);
+                box.getChildren().add(logsLabel);
+            }
 
             for (Node node : contentPane.getChildren()) {
                 node.setDisable(true);
@@ -95,8 +85,6 @@ public class SceneHelper {
             if (node2 == null) {
                 return;
             }
-
-            logs = null;
 
             contentPane.getChildren().remove(node2);
 

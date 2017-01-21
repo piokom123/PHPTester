@@ -22,6 +22,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleDoubleProperty;
 import lombok.Getter;
 import org.apache.http.Header;
@@ -494,7 +495,11 @@ public class Connector implements AutoCloseable {
 
                         downloaded += n;
 
-                        downloadProgress.set(downloaded.doubleValue() / result.getContentLength().doubleValue());
+                        Double progress = downloaded.doubleValue() / result.getContentLength().doubleValue();
+
+                        Platform.runLater(() -> {
+                            downloadProgress.set(progress);
+                        });
                     }
                 }
 
